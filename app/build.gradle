@@ -95,6 +95,9 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45'
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
+    //Utils
+    implementation 'net.danlew:android.joda:2.10.1.1'
 }
 
 static def getDate() {
