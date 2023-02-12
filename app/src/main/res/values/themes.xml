@@ -48,4 +48,10 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:backgroundDimAmount">0</item>
     </style>
+
+    <style name="btnGeneral" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/btn_login</item>
+        <item name="android:textColor">@color/white_smoke_2</item>
+    </style>
+
 </resources>

@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="snow">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="white_smoke">#F0F0F0</color>
+    <color name="white_smoke_2">#9E9E9E</color>
+    <color name="red">#EF3838</color>
+
+    <color name="btn_disabled">#BEC0C3</color>
 </resources>

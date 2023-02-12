@@ -2,10 +2,12 @@ package com.widi.nutechwallet.view.splash
 
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.view.login.LoginActivity
 import dagger.android.AndroidInjection
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.intentFor
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -48,7 +50,7 @@ class SplashActivity: BaseMvpActivity<SplashPresenter>(), SplashContract.View {
 //                }
 //            }
 //        } else {
-//            startActivity(intentFor<LoginActivity>())
+            startActivity(intentFor<LoginActivity>())
             finish()
 //        }
     }
