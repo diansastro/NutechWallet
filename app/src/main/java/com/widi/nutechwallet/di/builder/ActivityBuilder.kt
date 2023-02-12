@@ -1,5 +1,6 @@
 package com.widi.nutechwallet.di.builder
 
+import com.widi.nutechwallet.view.home.HomeActivity
 import com.widi.nutechwallet.view.login.LoginActivity
 import com.widi.nutechwallet.view.register.RegisterActivity
 import com.widi.nutechwallet.view.splash.SplashActivity
@@ -21,4 +22,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindRegisterActivity(): RegisterActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindHomeActivity(): HomeActivity
 }

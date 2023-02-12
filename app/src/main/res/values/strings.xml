@@ -10,5 +10,15 @@
     <string name="password">Password</string>
     <string name="first_name">Nama Depan</string>
     <string name="last_name">Nama Belakang</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="user">User</string>
+    <string name="your_balance">Saldo Anda</string>
+    <string name="top_up">Top Up</string>
+    <string name="transfer">Transfer</string>
+    <string name="trx_history">Riwayat Transaksi</string>
+    <string name="trx_amount">Rp 100.000</string>
+    <string name="view_all">Lihat Semua</string>
+
+    <string name="drawer_profile">Profile</string>
+    <string name="drawer_logout">Log Out</string>
 </resources>

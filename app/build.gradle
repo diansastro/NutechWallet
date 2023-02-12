@@ -98,6 +98,10 @@ dependencies {
 
     //Utils
     implementation 'net.danlew:android.joda:2.10.1.1'
+
+    // Fragment Manager
+    implementation 'com.github.nridwan:FragNav:-SNAPSHOT'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
 static def getDate() {
