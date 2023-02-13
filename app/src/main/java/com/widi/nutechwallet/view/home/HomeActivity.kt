@@ -8,6 +8,7 @@ import com.google.android.material.navigation.NavigationView
 import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.view.history.HistoryActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
 import com.widi.nutechwallet.view.topup.TopUpActivity
 import com.widi.nutechwallet.view.transfer.TransferActivity
@@ -72,6 +73,10 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
 
         cardTopUp.setOnClickListener {
             startActivity(intentFor<TopUpActivity>())
+        }
+
+        tvViewAllTrx.setOnClickListener {
+            startActivity(intentFor<HistoryActivity>())
         }
     }
 

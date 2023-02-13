@@ -9,9 +9,9 @@
     <application
         android:name=".NutechWallet"
         android:allowBackup="true"
-        android:icon="@drawable/nutech_logo"
+        android:icon="@drawable/nutech_logo2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/nutech_logo"
+        android:roundIcon="@drawable/nutech_logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutechWallet">
         <activity android:name=".view.splash.SplashActivity"
@@ -45,6 +45,10 @@
             android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity android:name=".view.topup.TopUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".view.history.HistoryActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity" />

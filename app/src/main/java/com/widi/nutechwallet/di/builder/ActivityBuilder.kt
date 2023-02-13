@@ -1,5 +1,6 @@
 package com.widi.nutechwallet.di.builder
 
+import com.widi.nutechwallet.view.history.HistoryActivity
 import com.widi.nutechwallet.view.home.HomeActivity
 import com.widi.nutechwallet.view.login.LoginActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
@@ -37,4 +38,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindTopUpActivity(): TopUpActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindHistoryActivity(): HistoryActivity
 }
