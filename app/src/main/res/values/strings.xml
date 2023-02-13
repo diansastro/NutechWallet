@@ -19,6 +19,9 @@
     <string name="trx_amount">Rp 100.000</string>
     <string name="view_all">Lihat Semua</string>
     <string name="update_profile">Ubah Profile</string>
+    <string name="nominal_topUp">Nominal TopUp</string>
+    <string name="nominal_trf">Nominal Transfer</string>
+    <string name="balance">%1$s</string>
 
     <string name="drawer_profile">Profile</string>
     <string name="drawer_logout">Log Out</string>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:fitsSystemWindows="true"
+    tools:ignore="ContentDescription">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <include android:id="@+id/topTransfer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            layout="@layout/top_nav_transfer"/>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshTransferData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_35sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topTransfer">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/transparent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:padding="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_150sdp"
+                    android:elevation="@dimen/_2sdp">
+
+                    <EditText
+                        android:id="@+id/etTransferAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="10"
+                        android:hint="@string/nominal_trf"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:background="@drawable/edt_outline2"
+                        android:autofillHints="no"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvBalance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:gravity="start"
+                        android:text="@string/your_balance"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_8ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColor="@color/white_smoke_2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etTransferAmount"/>
+
+                    <TextView
+                        android:id="@+id/tvCurrentBalance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="start"
+                        android:text="@string/balance"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_9ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textColor="@color/red"
+                        app:layout_constraintStart_toEndOf="@+id/tvBalance"
+                        app:layout_constraintTop_toBottomOf="@+id/etTransferAmount"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/btnTransfer"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/transfer"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvBalance"
+                        style="@style/btnGeneral"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

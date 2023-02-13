@@ -5,6 +5,8 @@ import com.widi.nutechwallet.view.login.LoginActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
 import com.widi.nutechwallet.view.register.RegisterActivity
 import com.widi.nutechwallet.view.splash.SplashActivity
+import com.widi.nutechwallet.view.topup.TopUpActivity
+import com.widi.nutechwallet.view.transfer.TransferActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -29,4 +31,10 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindProfileActivity(): ProfileActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindTransferActivity(): TransferActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindTopUpActivity(): TopUpActivity
 }

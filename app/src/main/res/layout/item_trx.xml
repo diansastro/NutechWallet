@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text="@string/trx_amount"
+        android:text="@string/balance"
         android:textSize="@dimen/_12ssp"
         android:fontFamily="@font/dmsansregular"
         android:textColor="@color/dim_black"

@@ -9,6 +9,8 @@ import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
+import com.widi.nutechwallet.view.topup.TopUpActivity
+import com.widi.nutechwallet.view.transfer.TransferActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.top_nav_home.*
@@ -62,6 +64,14 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     private fun initAction() {
         ivHamburger.setOnClickListener {
             dlHome.openDrawer(GravityCompat.START)
+        }
+
+        cardTransfer.setOnClickListener {
+            startActivity(intentFor<TransferActivity>())
+        }
+
+        cardTopUp.setOnClickListener {
+            startActivity(intentFor<TopUpActivity>())
         }
     }
 
