@@ -140,42 +140,38 @@
             android:textColor="@color/white"
             android:layout_marginBottom="@dimen/_15sdp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/tvNoAccount"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_40sdp"
-                android:gravity="end"
+                android:gravity="start"
                 android:text="@string/has_account"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/dmsansregular"
-                android:textColor="@color/white_smoke_2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvBackToLogin"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:textColor="@color/white_smoke_2"/>
 
             <TextView
                 android:id="@+id/tvBackToLogin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_60sdp"
                 android:text="@string/log_in"
                 android:textAllCaps="false"
-                android:gravity="end"
+                android:gravity="start"
                 android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/dmsansregular"
-                android:textColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:textColor="@color/red"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat
 import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.view.home.HomeActivity
 import com.widi.nutechwallet.view.register.RegisterActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login.*
@@ -29,7 +30,7 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(), LoginContract.View {
     }
 
     override fun setup() {
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.black), 0)
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.red), 0)
         StatusBarUtil.setLightMode(this)
         initView()
         initAction()
@@ -44,6 +45,11 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(), LoginContract.View {
     private fun initAction() {
         tvRegister.setOnClickListener {
             startActivity(intentFor<RegisterActivity>())
+            finish()
+        }
+
+        btnLogin.setOnClickListener {
+            startActivity(intentFor<HomeActivity>())
             finish()
         }
     }

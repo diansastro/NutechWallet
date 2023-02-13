@@ -25,7 +25,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View {
     }
 
     override fun setup() {
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.black), 0)
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.red), 0)
         StatusBarUtil.setLightMode(this)
     }
 
