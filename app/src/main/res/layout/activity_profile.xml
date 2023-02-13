@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:fitsSystemWindows="true"
+    tools:ignore="ContentDescription">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <include android:id="@+id/topNavProfile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            layout="@layout/top_nav_profile"/>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refreshUserData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_35sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topNavProfile">
+
+            <LinearLayout
+                android:id="@+id/llMainProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/transparent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:padding="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_150sdp"
+                    android:elevation="@dimen/_2sdp">
+
+                    <EditText
+                        android:id="@+id/etUserEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="10"
+                        android:text="@string/email"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:background="@drawable/edt_outline"
+                        android:autofillHints="no"
+                        android:enabled="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="LabelFor,TextFields" />
+
+                    <EditText
+                        android:id="@+id/etUserFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="10"
+                        android:text="@string/first_name"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:background="@drawable/edt_outline"
+                        android:autofillHints="no"
+                        android:inputType="text"
+                        android:hint="@string/first_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etUserEmail"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <EditText
+                        android:id="@+id/etUserLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:ems="10"
+                        android:text="@string/last_name"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:background="@drawable/edt_outline"
+                        android:autofillHints="no"
+                        android:inputType="text"
+                        android:hint="@string/last_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etUserFirstName"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <Button
+                        android:id="@+id/btnUpdateProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/dmsansregular"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/update_profile"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etUserLastName"
+                        style="@style/btnGeneral"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

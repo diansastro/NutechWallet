@@ -2,6 +2,7 @@ package com.widi.nutechwallet.di.builder
 
 import com.widi.nutechwallet.view.home.HomeActivity
 import com.widi.nutechwallet.view.login.LoginActivity
+import com.widi.nutechwallet.view.profile.ProfileActivity
 import com.widi.nutechwallet.view.register.RegisterActivity
 import com.widi.nutechwallet.view.splash.SplashActivity
 import dagger.Module
@@ -25,4 +26,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindHomeActivity(): HomeActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindProfileActivity(): ProfileActivity
 }
