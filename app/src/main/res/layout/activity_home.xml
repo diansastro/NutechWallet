@@ -120,7 +120,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:text="@string/balance"
+                                android:text="@string/trx_amount"
                                 android:textColor="@color/dim_black"
                                 android:textSize="@dimen/_23ssp"
                                 android:fontFamily="@font/dmsansbold"

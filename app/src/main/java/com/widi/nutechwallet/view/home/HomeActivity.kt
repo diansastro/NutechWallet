@@ -4,10 +4,15 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.model.TrxData
+import com.widi.nutechwallet.view.adapter.TrxHistoryAdapter
 import com.widi.nutechwallet.view.history.HistoryActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
 import com.widi.nutechwallet.view.topup.TopUpActivity
@@ -28,6 +33,9 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     override lateinit var presenter: HomePresenter
 
     private lateinit var drawerToggle : ActionBarDrawerToggle
+
+    private lateinit var trxHistoryAdapter: TrxHistoryAdapter
+    private val trxData = arrayListOf<TrxData>()
 
     override fun initPresenterView() {
         presenter.view = this
@@ -60,6 +68,21 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
 
     private fun initView() {
         nav_view_home.setNavigationItemSelectedListener(this)
+        trxData.add(TrxData(1, "", "TopUp", 100000))
+        trxData.add(TrxData(2, "", "Transfer", 50000))
+        trxData.add(TrxData(3, "", "TopUp", 200000))
+        trxData.add(TrxData(4, "", "Transfer", 125000))
+        trxData.add(TrxData(5, "", "TopUp", 75000))
+        trxData.add(TrxData(6, "", "Transfer", 85000))
+
+        trxHistoryAdapter = TrxHistoryAdapter(trxData)
+        rvTrxHistory.apply {
+            adapter = trxHistoryAdapter
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            isNestedScrollingEnabled = true
+        }
+
+        rvTrxHistory.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 
     private fun initAction() {

@@ -88,7 +88,7 @@
                         android:layout_marginTop="@dimen/_7sdp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:gravity="start"
-                        android:text="@string/balance"
+                        android:text="@string/trx_amount"
                         android:textAllCaps="false"
                         android:textSize="@dimen/_9ssp"
                         android:fontFamily="@font/dmsansregular"
