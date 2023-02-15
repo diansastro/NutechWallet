@@ -19,7 +19,7 @@ class UserEntity @Inject constructor(): AbstractNetwork<GeneralApi>() {
 
     override fun getApi(): Class<GeneralApi> = GeneralApi::class.java
 
-    fun regist(registBody: RegistBody): Observable<Response<RegisteredUserResponse>> = networkService().registration(registBody)
+    private fun regist(registBody: RegistBody): Observable<Response<RegisteredUserResponse>> = networkService().registration(registBody)
 
     fun execRegist(onNext: (Response<RegisteredUserResponse>) -> Unit = {},
                    onError: (Throwable) -> Unit = {},
