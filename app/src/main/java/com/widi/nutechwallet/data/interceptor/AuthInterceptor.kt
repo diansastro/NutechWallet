@@ -1,10 +1,8 @@
 package com.widi.nutechwallet.data.interceptor
 
 import android.content.Context
-import com.widi.nutechwallet.data.entity.GeneralEntity
 import com.widi.nutechwallet.data.exception.TokenInvalidException
 import com.widi.nutechwallet.header.HeaderManager
-import com.widi.nutechwallet.model.TokenData
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -19,7 +17,7 @@ import kotlin.jvm.Throws
  **/
 
 @Singleton
-class AuthInterceptor @Inject constructor(val headerManager: HeaderManager, val generalEntity: GeneralEntity, val context: Context): Interceptor {
+class AuthInterceptor @Inject constructor(val headerManager: HeaderManager, val context: Context): Interceptor {
 
     val AUTHORIZATION = "Authorization"
 

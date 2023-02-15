@@ -5,9 +5,9 @@ import com.google.gson.Gson
 import com.widi.nutechwallet.base.AbstractPreferences
 import com.widi.nutechwallet.data.repository.ProfileRepository
 import com.widi.nutechwallet.model.TokenData
+import com.widi.nutechwallet.model.UserData
 import com.widi.nutechwallet.objects.PrefKey
 import com.widi.nutechwallet.objects.PrefName
-import okhttp3.Credentials
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -37,7 +37,7 @@ open class HeaderManager @Inject constructor(val profileRepository: ProfileRepos
     }
 
     fun isLoggedIn(): Boolean {
-        return null != accessToken && null != profileRepository.userData
+        return null != profileRepository.userData?.token
     }
 
     fun getToken(): TokenData? {

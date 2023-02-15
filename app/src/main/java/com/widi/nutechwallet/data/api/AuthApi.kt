@@ -12,7 +12,7 @@ import retrofit2.http.POST
  * Created by widi (widiytk@gmail.com) on 13/02/23.
  **/
 
-interface GeneralApi {
+interface AuthApi {
 
     @POST("login")
     fun login(@Body loginBody: LoginBody): Observable<Response<AuthResponse>>

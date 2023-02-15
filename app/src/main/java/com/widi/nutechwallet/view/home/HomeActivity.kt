@@ -14,6 +14,7 @@ import com.widi.nutechwallet.base.BaseMvpActivity
 import com.widi.nutechwallet.model.TrxData
 import com.widi.nutechwallet.view.adapter.TrxHistoryAdapter
 import com.widi.nutechwallet.view.history.HistoryActivity
+import com.widi.nutechwallet.view.login.LoginActivity
 import com.widi.nutechwallet.view.profile.ProfileActivity
 import com.widi.nutechwallet.view.topup.TopUpActivity
 import com.widi.nutechwallet.view.transfer.TransferActivity
@@ -59,6 +60,12 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
         when (item.itemId) {
             R.id.nav_item_profile -> {
                 startActivity(intentFor<ProfileActivity>())
+            }
+
+            R.id.nav_item_logout -> {
+                presenter.headerManager.logout()
+                startActivity(intentFor<LoginActivity>())
+                finish()
             }
         }
 

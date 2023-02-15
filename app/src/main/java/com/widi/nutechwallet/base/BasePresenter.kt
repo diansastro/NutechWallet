@@ -1,5 +1,6 @@
 package com.widi.nutechwallet.base
 
+import com.widi.nutechwallet.header.HeaderManager
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -9,8 +10,8 @@ import javax.inject.Inject
  **/
 
 open class BasePresenter<T: ErrorView> {
-//    @Inject
-//    lateinit var headerManager: HeaderManager
+    @Inject
+    lateinit var headerManager: HeaderManager
 
     var compose: CompositeDisposable = CompositeDisposable()
 
@@ -26,6 +27,6 @@ open class BasePresenter<T: ErrorView> {
     fun clearAllSubscription() = compose.clear()
 
     fun forceLogout() {
-//        headerManager.logout()
+        headerManager.logout()
     }
 }

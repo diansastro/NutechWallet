@@ -2,6 +2,7 @@ package com.widi.nutechwallet.view.splash
 
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.view.home.HomeActivity
 import com.widi.nutechwallet.view.login.LoginActivity
 import dagger.android.AndroidInjection
 import io.reactivex.Observable
@@ -40,19 +41,13 @@ class SplashActivity: BaseMvpActivity<SplashPresenter>(), SplashContract.View {
     )
 
     private fun onNextScreen() {
-//        if(presenter.headerManager.isLoggedIn()){
-//            presenter.headerManager.profileRepository.userData?.apply {
-//                when (userType){
-//                    "STAFF" -> {
-//                        startActivity(intentFor<HomeActivity>())
-//                        finish()
-//                    }
-//                }
-//            }
-//        } else {
+        if(presenter.headerManager.isLoggedIn()){
+            startActivity(intentFor<HomeActivity>())
+            finish()
+        } else {
             startActivity(intentFor<LoginActivity>())
             finish()
-//        }
+        }
     }
 
     override fun getLayout(): Int = R.layout.activity_splash

@@ -9,5 +9,5 @@ import com.google.gson.annotations.SerializedName
 data class UserData(@SerializedName("email") var email: String? = "",
                     @SerializedName("first_name") val first_name: String? = "",
                     @SerializedName("last_name") val last_name: String? = "",
-                    @SerializedName("token") val token: TokenData? = null) {
+                    @SerializedName("token") var token: String? = "") {
 }

@@ -24,6 +24,8 @@
     <string name="nominal_trf">Nominal Transfer</string>
     <string name="amount">Nominal</string>
     <string name="balance">%1$s</string>
+    <string name="success">Berhasil</string>
+    <string name="ok">OK</string>
 
     <string name="drawer_profile">Profile</string>
     <string name="drawer_logout">Log Out</string>

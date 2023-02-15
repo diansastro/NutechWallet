@@ -1,6 +1,5 @@
 package com.widi.nutechwallet.view.login
 
-import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.jaeger.library.StatusBarUtil
@@ -66,14 +65,13 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(), LoginContract.View {
     private fun initAction() {
         tvRegister.setOnClickListener {
             startActivity(intentFor<RegisterActivity>())
-            finish()
         }
 
         btnLogin.setOnClickListener {
-            startActivity(intentFor<HomeActivity>())
-//            if (!etLoginEmail.isEmpty() && !etLoginPassword.isEmpty()) {
-//                presenter.execLogin(LoginBody(etLoginEmail.text.toString(), etLoginPassword.text.toString()))
-//            }
+            showLoading()
+            if (!etLoginEmail.isEmpty() && !etLoginPassword.isEmpty()) {
+                presenter.execLogin(LoginBody(etLoginEmail.text.toString(), etLoginPassword.text.toString()))
+            }
         }
     }
 
@@ -82,11 +80,12 @@ class LoginActivity: BaseMvpActivity<LoginPresenter>(), LoginContract.View {
     }
 
     override fun onNextScreen() {
-//        startActivity(intentFor<HomeActivity>())
+        startActivity(intentFor<HomeActivity>())
         finish()
     }
 
     override fun onError() {
+        dismissLoading()
         Toast.makeText(this, "Username / Password Salah", Toast.LENGTH_SHORT).show()
     }
 
