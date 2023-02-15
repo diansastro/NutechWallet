@@ -67,36 +67,6 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvBalance"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:gravity="start"
-                        android:text="@string/your_balance"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_8ssp"
-                        android:fontFamily="@font/dmsansregular"
-                        android:textColor="@color/white_smoke_2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/etTopUpAmount"/>
-
-                    <TextView
-                        android:id="@+id/tvCurrentBalance"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:gravity="start"
-                        android:text="@string/trx_amount"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_9ssp"
-                        android:fontFamily="@font/dmsansregular"
-                        android:textColor="@color/red"
-                        app:layout_constraintStart_toEndOf="@+id/tvBalance"
-                        app:layout_constraintTop_toBottomOf="@+id/etTopUpAmount"
-                        app:layout_constraintEnd_toEndOf="parent"/>
-
                     <Button
                         android:id="@+id/btnTopUp"
                         android:layout_width="match_parent"
@@ -109,7 +79,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvBalance"
+                        app:layout_constraintTop_toBottomOf="@+id/etTopUpAmount"
                         style="@style/btnGeneral"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

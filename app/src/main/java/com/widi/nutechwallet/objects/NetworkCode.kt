@@ -9,5 +9,5 @@ object NetworkCode {
     const val CODE_USER_NOT_FOUND = 102
     const val CODE_EMAIL_EXISTS = 103
     const val CODE_SUCCESS = 0
-    const val TOKEN_EXPIRED = 103
+    const val TOKEN_EXPIRED = 108
 }

@@ -1,10 +1,16 @@
 package com.widi.nutechwallet.view.topup
 
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.jaeger.library.StatusBarUtil
+import com.jakewharton.rxbinding3.widget.textChanges
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.data.body.TopUpBody
+import com.widi.nutechwallet.view.dialog.SuccessDialog
 import dagger.android.AndroidInjection
+import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.android.synthetic.main.activity_topup.*
 import kotlinx.android.synthetic.main.top_nav_topup.*
 import javax.inject.Inject
 
@@ -28,7 +34,7 @@ class TopUpActivity: BaseMvpActivity<TopUpPresenter>(), TopUpContract.View {
     override fun setup() {
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.red), 0)
         StatusBarUtil.setLightMode(this)
-        initView()
+        checkMandatory()
         initAction()
     }
 
@@ -39,11 +45,34 @@ class TopUpActivity: BaseMvpActivity<TopUpPresenter>(), TopUpContract.View {
         else supportFragmentManager.popBackStack()
     }
 
-    private fun initView() {
-
+    override fun initSubscription() {
+        addUiSubscription(etTopUpAmount.textChanges().observeOn(AndroidSchedulers.mainThread()).subscribe {
+            if (it.isNotEmpty()) {
+                checkMandatory()
+            }
+        })
     }
 
     private fun initAction() {
         tvTopUpBack.setOnClickListener { onBackPressed() }
+        btnTopUp.setOnClickListener {
+            val t = etTopUpAmount.text.toString()
+            val nom: Int = t.toInt()
+            showLoading()
+            presenter.execTopUp(TopUpBody(nom))
+        }
+    }
+
+    override fun onSuccess() {
+        dismissLoading()
+        SuccessDialog.newInstance().show(supportFragmentManager, SuccessDialog::class.java.canonicalName)
+    }
+
+    override fun onError() {
+        Toast.makeText(this, "Token Kadaluarsa, Coba Login Kembali", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkMandatory() {
+        btnTopUp.isEnabled = (etTopUpAmount.text.isNotEmpty())
     }
 }
