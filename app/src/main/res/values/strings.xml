@@ -11,7 +11,7 @@
     <string name="first_name">Nama Depan</string>
     <string name="last_name">Nama Belakang</string>
     <string name="welcome">Selamat Datang</string>
-    <string name="user">User</string>
+    <string name="user">%1$s</string>
     <string name="your_balance">Saldo Anda</string>
     <string name="top_up">Top Up</string>
     <string name="transfer">Transfer</string>

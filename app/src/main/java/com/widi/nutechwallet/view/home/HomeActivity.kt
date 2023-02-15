@@ -11,6 +11,8 @@ import com.google.android.material.navigation.NavigationView
 import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.data.response.BalanceResponse
+import com.widi.nutechwallet.data.response.TrxHistoryListResponse
 import com.widi.nutechwallet.model.TrxData
 import com.widi.nutechwallet.view.adapter.TrxHistoryAdapter
 import com.widi.nutechwallet.view.history.HistoryActivity
@@ -36,6 +38,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     private lateinit var drawerToggle : ActionBarDrawerToggle
 
     private lateinit var trxHistoryAdapter: TrxHistoryAdapter
+    private var balance = ""
     private val trxData = arrayListOf<TrxData>()
 
     override fun initPresenterView() {
@@ -49,6 +52,9 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     override fun setup() {
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.red), 0)
         StatusBarUtil.setLightMode(this)
+        showLoading()
+        presenter.execBalance()
+        presenter.execTrxHistory()
         initView()
         initDrawer()
         initAction()
@@ -75,21 +81,10 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
 
     private fun initView() {
         nav_view_home.setNavigationItemSelectedListener(this)
-        trxData.add(TrxData(1, "", "TopUp", 100000))
-        trxData.add(TrxData(2, "", "Transfer", 50000))
-        trxData.add(TrxData(3, "", "TopUp", 200000))
-        trxData.add(TrxData(4, "", "Transfer", 125000))
-        trxData.add(TrxData(5, "", "TopUp", 75000))
-        trxData.add(TrxData(6, "", "Transfer", 85000))
-
-        trxHistoryAdapter = TrxHistoryAdapter(trxData)
-        rvTrxHistory.apply {
-            adapter = trxHistoryAdapter
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            isNestedScrollingEnabled = true
+        presenter.headerManager.profileRepository.userData?.apply {
+            val data = this
+            tvUserName.text = getString(R.string.user, data.first_name?.plus(" ").plus(data.last_name))
         }
-
-        rvTrxHistory.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 
     private fun initAction() {
@@ -108,6 +103,16 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
         tvViewAllTrx.setOnClickListener {
             startActivity(intentFor<HistoryActivity>())
         }
+
+        refreshData.setOnRefreshListener {
+            balance = ""
+            trxData.clear()
+            presenter.execBalance()
+            presenter.execTrxHistory()
+            for (i in 0 until rvTrxHistory.itemDecorationCount) {
+                rvTrxHistory.removeItemDecorationAt(i)
+            }
+        }
     }
 
     private fun initDrawer() {
@@ -116,4 +121,29 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
         drawerToggle.syncState()
     }
 
+    override fun getBalance(balanceResponse: BalanceResponse?) {
+        balance = balanceResponse?.data?.balace.toString()
+        tvTotalBalance.text = getString(R.string.balance, balance)
+
+        dismissLoading()
+        refreshData.isRefreshing = false
+    }
+
+    override fun getTrxHistory(trxHistoryListResponse: TrxHistoryListResponse?) {
+        val dataSize = trxHistoryListResponse?.data?.size!!
+        if (dataSize in 1..6) {
+            trxData.addAll(trxHistoryListResponse.data)
+        }
+
+        trxHistoryAdapter = TrxHistoryAdapter(trxData)
+        rvTrxHistory.apply {
+            adapter = trxHistoryAdapter
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            isNestedScrollingEnabled = true
+        }
+
+        rvTrxHistory.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        dismissLoading()
+        refreshData.isRefreshing = false
+    }
 }

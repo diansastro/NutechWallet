@@ -6,7 +6,6 @@ import com.widi.nutechwallet.header.HeaderManager
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
-import java.io.IOException
 import java.net.HttpURLConnection
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,34 +28,14 @@ class AuthInterceptor @Inject constructor(val headerManager: HeaderManager, val 
             if (response.code() != 401) {
                 return response
             } else {
-                newRefreshToken()
                 response = chain.proceed(addHeaderAuth(oriResponse))
                 doWhenForbidden(response)
             }
             return response
         } else {
-            newRequestToken()
             return chain.proceed(addHeaderAuth(oriResponse))
         }
     }
-
-    @Throws(IOException::class)
-    fun newRefreshToken() {
-        synchronized(headerManager) {
-//            val responseToken =
-//                if (headerManager.isLoggedIn()) tokenEntity.postRefreshToken().execute()
-//                else tokenEntity.postRefreshToken().execute()
-//
-//            headerManager.accessToken = TokenData(responseToken.body()?.accessToken)
-        }
-    }
-
-    @Throws(IOException::class)
-    fun newRequestToken() {
-//        val responseNew = tokenEntity.postRefreshToken().execute()
-//        headerManager.accessToken = TokenData(responseNew.body()?.accessToken, responseNew.body()?.tokenType, responseNew.body()?.expiresIn, responseNew.body()?.scope)
-    }
-
 
     @Throws(TokenInvalidException::class)
     private fun doWhenForbidden(response: Response) {
@@ -68,7 +47,6 @@ class AuthInterceptor @Inject constructor(val headerManager: HeaderManager, val 
             else headerManager.clearToken()
         }
     }
-
 
     private fun addHeaderAuth(oriRequest: Request): Request {
         return oriRequest.newBuilder()

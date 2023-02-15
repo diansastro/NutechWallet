@@ -20,17 +20,7 @@ open class HeaderManager @Inject constructor(val profileRepository: ProfileRepos
 
     override fun getPreferencesGroup(): String = PrefName.PREF_TOKEN_NAME
 
-    var accessToken: TokenData? = null
-    get() {
-        if (null == field) field = getData(PrefKey.PREF_KEY_TOKEN, TokenData::class.java)
-        return field
-    }
-
-    set(value) {
-        field = value
-        if (null == value) clearData(PrefKey.PREF_KEY_TOKEN)
-        else saveData(PrefKey.PREF_KEY_TOKEN, value)
-    }
+    var accessToken: String? = ""
 
     fun hasToken(): Boolean {
         return null != getToken()
@@ -40,20 +30,13 @@ open class HeaderManager @Inject constructor(val profileRepository: ProfileRepos
         return null != profileRepository.userData?.token
     }
 
-    fun getToken(): TokenData? {
-        return accessToken
+    fun getToken(): String? {
+        return profileRepository.userData?.token
     }
 
     fun getBearerToken(): String {
-        return "Bearer ${getToken()?.token}"
+        return "Bearer ${getToken()}"
     }
-
-//    fun getBasicCredential(): String {
-//        if (null != profileRepository.userData) {
-//            return Credentials.basic(profileRepository.userData?.username!!, profileRepository.userData?.clientSecret!!)
-//        }
-//        return ""
-//    }
 
     fun clearToken() {
         accessToken = null
