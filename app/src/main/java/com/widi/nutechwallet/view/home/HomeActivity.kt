@@ -123,7 +123,11 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
 
     override fun getBalance(balanceResponse: BalanceResponse?) {
         balance = balanceResponse?.data?.balace.toString()
-        tvTotalBalance.text = getString(R.string.balance, balance)
+        if (balance.isNotBlank()) {
+            tvTotalBalance.text = getString(R.string.balance, balance)
+        } else {
+            tvTotalBalance.text = "0"
+        }
 
         dismissLoading()
         refreshData.isRefreshing = false

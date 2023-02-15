@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent"
+    android:padding="@dimen/_4sdp"
     android:elevation="@dimen/_2sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -25,7 +26,6 @@
         android:id="@+id/tvTrxAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/balance"
         android:textSize="@dimen/_12ssp"
         android:fontFamily="@font/dmsansregular"

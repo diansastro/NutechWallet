@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaeger.library.StatusBarUtil
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
+import com.widi.nutechwallet.data.response.TrxHistoryListResponse
 import com.widi.nutechwallet.model.TrxData
 import com.widi.nutechwallet.view.adapter.TrxHistoryAdapter
 import dagger.android.AndroidInjection
@@ -37,7 +38,8 @@ class HistoryActivity: BaseMvpActivity<HistoryPresenter>(), HistoryContract.View
     override fun setup() {
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.red), 0)
         StatusBarUtil.setLightMode(this)
-        initView()
+        showLoading()
+        presenter.execAllTrxHistory()
         initAction()
     }
 
@@ -48,19 +50,19 @@ class HistoryActivity: BaseMvpActivity<HistoryPresenter>(), HistoryContract.View
         else supportFragmentManager.popBackStack()
     }
 
-    private fun initView() {
-        trxData.add(TrxData(1, "", "TopUp", 100000))
-        trxData.add(TrxData(2, "", "Transfer", 50000))
-        trxData.add(TrxData(3, "", "TopUp", 200000))
-        trxData.add(TrxData(4, "", "Transfer", 125000))
-        trxData.add(TrxData(5, "", "TopUp", 75000))
-        trxData.add(TrxData(6, "", "Transfer", 85000))
-        trxData.add(TrxData(7, "", "TopUp", 100000))
-        trxData.add(TrxData(8, "", "Transfer", 50000))
-        trxData.add(TrxData(9, "", "TopUp", 200000))
-        trxData.add(TrxData(10, "", "Transfer", 125000))
-        trxData.add(TrxData(11, "", "TopUp", 75000))
-        trxData.add(TrxData(12, "", "Transfer", 85000))
+    private fun initAction() {
+        tvHistoryBack.setOnClickListener { onBackPressed() }
+        refreshTrxHistory.setOnRefreshListener {
+            trxData.clear()
+            presenter.execAllTrxHistory()
+            for (i in 0 until rvTrxHistoryList.itemDecorationCount) {
+                rvTrxHistoryList.removeItemDecorationAt(i)
+            }
+        }
+    }
+
+    override fun getAllTrxHistory(trxHistoryListResponse: TrxHistoryListResponse?) {
+        trxData.addAll(trxHistoryListResponse?.data!!)
 
         trxHistoryAdapter = TrxHistoryAdapter(trxData)
         rvTrxHistoryList.apply {
@@ -70,9 +72,7 @@ class HistoryActivity: BaseMvpActivity<HistoryPresenter>(), HistoryContract.View
         }
 
         rvTrxHistoryList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-    }
-
-    private fun initAction() {
-        tvHistoryBack.setOnClickListener { onBackPressed() }
+        dismissLoading()
+        refreshTrxHistory.isRefreshing = false
     }
 }
