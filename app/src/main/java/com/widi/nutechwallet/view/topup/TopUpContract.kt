@@ -1,7 +1,7 @@
 package com.widi.nutechwallet.view.topup
 
 import com.widi.nutechwallet.base.ErrorView
-import com.widi.nutechwallet.data.body.TopUpBody
+import com.widi.nutechwallet.data.body.TrxBody
 
 /**
  * Created by widi (widiytk@gmail.com) on 13/02/23.
@@ -14,6 +14,6 @@ interface TopUpContract {
     }
 
     interface Presenter {
-        fun execTopUp(topUpBody: TopUpBody)
+        fun execTopUp(trxBody: TrxBody)
     }
 }

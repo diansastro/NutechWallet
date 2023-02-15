@@ -2,7 +2,7 @@ package com.widi.nutechwallet.data.api
 
 import com.widi.nutechwallet.data.body.LoginBody
 import com.widi.nutechwallet.data.body.RegistBody
-import com.widi.nutechwallet.data.body.TopUpBody
+import com.widi.nutechwallet.data.body.TrxBody
 import com.widi.nutechwallet.data.response.*
 import io.reactivex.Observable
 import retrofit2.Response
@@ -29,5 +29,8 @@ interface GeneralApi {
     fun getTrxHistory(): Observable<Response<TrxHistoryListResponse>>
 
     @POST("topup")
-    fun doTopUp(@Body topUpBody: TopUpBody): Observable<Response<TrxResponse>>
+    fun doTopUp(@Body trxBody: TrxBody): Observable<Response<TrxResponse>>
+
+    @POST("transfer")
+    fun doTransfer(@Body trxBody: TrxBody): Observable<Response<TrxResponse>>
 }

@@ -124,6 +124,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     override fun getBalance(balanceResponse: BalanceResponse?) {
         balance = balanceResponse?.data?.balace.toString()
         if (balance.isNotBlank()) {
+            presenter.headerManager.balance = balance
             tvTotalBalance.text = getString(R.string.balance, balance)
         } else {
             tvTotalBalance.text = "0"
@@ -134,10 +135,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     }
 
     override fun getTrxHistory(trxHistoryListResponse: TrxHistoryListResponse?) {
-        val dataSize = trxHistoryListResponse?.data?.size!!
-        if (dataSize in 1..6) {
-            trxData.addAll(trxHistoryListResponse.data)
-        }
+        trxData.addAll(trxHistoryListResponse?.data!!)
 
         trxHistoryAdapter = TrxHistoryAdapter(trxData)
         rvTrxHistory.apply {

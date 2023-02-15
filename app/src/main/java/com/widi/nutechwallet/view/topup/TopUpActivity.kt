@@ -6,7 +6,7 @@ import com.jaeger.library.StatusBarUtil
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.widi.nutechwallet.R
 import com.widi.nutechwallet.base.BaseMvpActivity
-import com.widi.nutechwallet.data.body.TopUpBody
+import com.widi.nutechwallet.data.body.TrxBody
 import com.widi.nutechwallet.view.dialog.SuccessDialog
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -51,6 +51,7 @@ class TopUpActivity: BaseMvpActivity<TopUpPresenter>(), TopUpContract.View {
                 checkMandatory()
             }
         })
+        super.initSubscription()
     }
 
     private fun initAction() {
@@ -59,7 +60,7 @@ class TopUpActivity: BaseMvpActivity<TopUpPresenter>(), TopUpContract.View {
             val t = etTopUpAmount.text.toString()
             val nom: Int = t.toInt()
             showLoading()
-            presenter.execTopUp(TopUpBody(nom))
+            presenter.execTopUp(TrxBody(nom))
         }
     }
 
@@ -70,6 +71,7 @@ class TopUpActivity: BaseMvpActivity<TopUpPresenter>(), TopUpContract.View {
 
     override fun onError() {
         Toast.makeText(this, "Token Kadaluarsa, Coba Login Kembali", Toast.LENGTH_SHORT).show()
+        dismissLoading()
     }
 
     private fun checkMandatory() {

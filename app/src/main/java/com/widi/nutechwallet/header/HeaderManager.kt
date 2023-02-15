@@ -21,6 +21,7 @@ open class HeaderManager @Inject constructor(val profileRepository: ProfileRepos
     override fun getPreferencesGroup(): String = PrefName.PREF_TOKEN_NAME
 
     var accessToken: String? = ""
+    var balance: String? = ""
 
     fun hasToken(): Boolean {
         return null != getToken()
