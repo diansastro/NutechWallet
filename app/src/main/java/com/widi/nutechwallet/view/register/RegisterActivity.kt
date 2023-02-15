@@ -77,12 +77,15 @@ class RegisterActivity: BaseMvpActivity<RegisterPresenter>(), RegisterContract.V
 
         btnRegister.setOnClickListener {
             if (!etRegistEmail.isEmpty() && !etFirstName.isEmpty() && !etLastName.isEmpty() && !etPassword.isEmpty()) {
+                showLoading()
                 presenter.execRegist(RegistBody(etRegistEmail.text.toString(), etFirstName.text.toString(), etLastName.text.toString(), etPassword.text.toString()))
             }
         }
     }
 
     override fun onNextScreen() {
+        dismissLoading()
+        Toast.makeText(this, "Berhasil, Silahkan Login", Toast.LENGTH_SHORT).show()
         startActivity(intentFor<LoginActivity>())
     }
 
