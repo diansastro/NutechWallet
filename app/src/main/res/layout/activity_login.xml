@@ -64,7 +64,7 @@
             android:fontFamily="@font/dmsansregular"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="@string/email"
+            android:hint="@string/login_email"
             android:importantForAutofill="no"
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp" />

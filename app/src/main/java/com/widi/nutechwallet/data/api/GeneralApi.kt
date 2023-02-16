@@ -3,6 +3,7 @@ package com.widi.nutechwallet.data.api
 import com.widi.nutechwallet.data.body.LoginBody
 import com.widi.nutechwallet.data.body.RegistBody
 import com.widi.nutechwallet.data.body.TrxBody
+import com.widi.nutechwallet.data.body.UpdateProfileBody
 import com.widi.nutechwallet.data.response.*
 import io.reactivex.Observable
 import retrofit2.Response
@@ -21,6 +22,12 @@ interface GeneralApi {
 
     @POST("registration")
     fun registration(@Body registBody: RegistBody): Observable<Response<RegisteredUserResponse>>
+
+    @GET("getProfile")
+    fun getProfile(): Observable<Response<RegisteredUserResponse>>
+
+    @POST("updateProfile")
+    fun updateProfile(@Body updateProfileBody: UpdateProfileBody): Observable<Response<UpdateProfileResponse>>
 
     @GET("balance")
     fun getBalance(): Observable<Response<BalanceResponse>>

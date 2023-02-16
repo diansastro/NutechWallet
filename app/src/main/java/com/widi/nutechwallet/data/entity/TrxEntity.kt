@@ -4,12 +4,12 @@ import android.content.Context
 import com.widi.nutechwallet.data.AuthAbstractNetwork
 import com.widi.nutechwallet.data.api.GeneralApi
 import com.widi.nutechwallet.data.body.TrxBody
+import com.widi.nutechwallet.data.body.UpdateProfileBody
 import com.widi.nutechwallet.data.interceptor.AuthInterceptor
-import com.widi.nutechwallet.data.response.BalanceResponse
-import com.widi.nutechwallet.data.response.TrxHistoryListResponse
-import com.widi.nutechwallet.data.response.TrxResponse
+import com.widi.nutechwallet.data.response.*
 import com.widi.nutechwallet.extension.uiSubscribe
 import com.widi.nutechwallet.header.HeaderManager
+import com.widi.nutechwallet.objects.NetworkCode
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import retrofit2.Response
@@ -45,6 +45,26 @@ class TrxEntity @Inject constructor(headerManager: HeaderManager, authIntercepto
                   onComplete: () -> Unit = {},
                   trxBody: TrxBody): Disposable {
         return doTransfer(trxBody).uiSubscribe({
+            onNext.invoke(it)
+        }, onError, onComplete)
+    }
+
+    fun getProfile(): Observable<Response<RegisteredUserResponse>> = networkService().getProfile()
+
+    fun doUpdateProfile(updateProfileBody: UpdateProfileBody): Observable<Response<UpdateProfileResponse>> = networkService().updateProfile(updateProfileBody)
+
+    fun execUpdateProfile(onNext: (Response<UpdateProfileResponse>) -> Unit = {},
+                        onError: (Throwable) -> Unit = {},
+                        onComplete: () -> Unit = {},
+                        updateProfileBody: UpdateProfileBody): Disposable {
+        return doUpdateProfile(updateProfileBody).uiSubscribe({
+            if (it.code() == NetworkCode.CODE_OK) {
+                it.body()?.data?.let { data ->
+                    val d = headerManager.profileRepository.userData
+                    d?.first_name = data.first_name
+                    d?.last_name = data.last_name
+                }
+            }
             onNext.invoke(it)
         }, onError, onComplete)
     }

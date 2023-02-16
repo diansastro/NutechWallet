@@ -16,7 +16,7 @@ import javax.inject.Singleton
  **/
 
 @Singleton
-open class HeaderManager @Inject constructor(val profileRepository: ProfileRepository, val context: Context, gson: Gson): AbstractPreferences(context, gson) {
+open class HeaderManager @Inject constructor(var profileRepository: ProfileRepository, val context: Context, gson: Gson): AbstractPreferences(context, gson) {
 
     override fun getPreferencesGroup(): String = PrefName.PREF_TOKEN_NAME
 
