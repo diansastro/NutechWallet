@@ -78,7 +78,7 @@ class RegisterActivity: BaseMvpActivity<RegisterPresenter>(), RegisterContract.V
         btnRegister.setOnClickListener {
             if (!etRegistEmail.isEmpty() && !etFirstName.isEmpty() && !etLastName.isEmpty() && !etPassword.isEmpty()) {
                 showLoading()
-                presenter.execRegist(RegistBody(etRegistEmail.text.toString(), etFirstName.text.toString(), etLastName.text.toString(), etPassword.text.toString()))
+                presenter.execRegist(RegistBody(etRegistEmail.text.toString(), etPassword.text.toString(), etFirstName.text.toString(), etLastName.text.toString()))
             }
         }
     }
