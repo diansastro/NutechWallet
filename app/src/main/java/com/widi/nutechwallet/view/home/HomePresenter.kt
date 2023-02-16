@@ -29,14 +29,18 @@ class HomePresenter @Inject constructor(val trxEntity: TrxEntity): BasePresenter
 
     override fun execTrxHistory() {
         addSubscription(trxEntity.getTrxHistory().uiSubscribe({
-          when(it.code()) {
-              NetworkCode.CODE_OK -> {
-                  view?.getTrxHistory(it.body())
-              }
-              else -> {
-                  view?.errorScreen("Token Error atau Kadaluarsa")
-              }
-          }
+            if (it.code() == NetworkCode.NOT_FOUND) {
+                view?.errorScreen("Data history tidak ditemukan")
+            } else if (it.code() == NetworkCode.CODE_OK) {
+                when(it.body()?.status) {
+                    NetworkCode.CODE_SUCCESS -> {
+                        view?.getTrxHistory(it.body())
+                    }
+                    else -> {
+                        view?.errorScreen("Token Error atau Kadaluarsa")
+                    }
+                }
+            }
         }, {
            view?.errorScreen(it.localizedMessage)
         }, {}))

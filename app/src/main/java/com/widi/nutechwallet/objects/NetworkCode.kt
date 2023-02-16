@@ -11,4 +11,5 @@ object NetworkCode {
     const val CODE_SUCCESS = 0
     const val TOKEN_EXPIRED = 108
     const val BAD_REQUEST = 400
+    const val NOT_FOUND = 404
 }

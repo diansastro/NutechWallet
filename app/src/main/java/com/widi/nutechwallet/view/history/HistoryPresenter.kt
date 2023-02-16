@@ -14,12 +14,16 @@ class HistoryPresenter @Inject constructor(val trxEntity: TrxEntity): BasePresen
 
     override fun execAllTrxHistory() {
         addSubscription(trxEntity.getTrxHistory().uiSubscribe({
-            when(it.code()) {
-                NetworkCode.CODE_OK -> {
-                    view?.getAllTrxHistory(it.body())
-                }
-                else -> {
-                    view?.errorScreen("Token Error atau Kadaluarsa")
+            if (it.code() == NetworkCode.NOT_FOUND) {
+                view?.errorScreen("Data history tidak ditemukan")
+            } else if (it.code() == NetworkCode.CODE_OK) {
+                when(it.body()?.status) {
+                    NetworkCode.CODE_SUCCESS -> {
+                        view?.getAllTrxHistory(it.body())
+                    }
+                    else -> {
+                        view?.errorScreen("Token Error atau Kadaluarsa")
+                    }
                 }
             }
         }, {
