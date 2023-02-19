@@ -14,6 +14,7 @@ import com.widi.nutechwallet.base.BaseMvpActivity
 import com.widi.nutechwallet.data.response.BalanceResponse
 import com.widi.nutechwallet.data.response.TrxHistoryListResponse
 import com.widi.nutechwallet.model.TrxData
+import com.widi.nutechwallet.objects.CurrencyFormatter.convertRupiah
 import com.widi.nutechwallet.view.adapter.TrxHistoryAdapter
 import com.widi.nutechwallet.view.history.HistoryActivity
 import com.widi.nutechwallet.view.login.LoginActivity
@@ -38,7 +39,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     private lateinit var drawerToggle : ActionBarDrawerToggle
 
     private lateinit var trxHistoryAdapter: TrxHistoryAdapter
-    private var balance = ""
+    private var b = ""
     private val trxData = arrayListOf<TrxData>()
 
     override fun initPresenterView() {
@@ -105,7 +106,7 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
         }
 
         refreshData.setOnRefreshListener {
-            balance = ""
+            b = ""
             trxData.clear()
             presenter.execBalance()
             presenter.execTrxHistory()
@@ -122,12 +123,12 @@ class HomeActivity: BaseMvpActivity<HomePresenter>(), HomeContract.View, Navigat
     }
 
     override fun getBalance(balanceResponse: BalanceResponse?) {
-        balance = balanceResponse?.data?.balace.toString()
-        if (balance.isNotBlank()) {
-            presenter.headerManager.balance = balance
-            tvTotalBalance.text = getString(R.string.balance, balance)
+        if (!balanceResponse?.data?.balance.isNullOrBlank()) {
+            b = balanceResponse?.data?.balance!!
+            presenter.headerManager.balance = b
+            tvTotalBalance.text = b.toInt().convertRupiah()
         } else {
-            tvTotalBalance.text = "0"
+            tvTotalBalance.text = 0.convertRupiah()
         }
 
         dismissLoading()
